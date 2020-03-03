@@ -4,7 +4,7 @@ import pygame
 class level_:
 
     def __init__(self):
-
+        # Два уровня
         self.LVL1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                      1, 1, 1, 1, 1, 1, 1,
                      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -169,7 +169,7 @@ class level_:
                      1, 1, 1, 1, 1, 1, 1,
 
                      ]
-
+        # Загрузка компонентов
         self.LVL_image = pygame.image.load('Images/Level.png')
         self.LVL_image2 = pygame.image.load('Images/Level2.png')
         self.wall = []
@@ -183,6 +183,7 @@ class level_:
         self.level2 = False
         self.newLVL = False
 
+    # Создание и отрисовка уровней
     def create_LVL(self):
         screen = pygame.Surface((441, 441), pygame.SRCALPHA, 32)
         x = 1

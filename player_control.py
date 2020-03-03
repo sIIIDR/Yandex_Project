@@ -10,6 +10,7 @@ class Control:
         self.pause = True
         self.game_start_counter = True
 
+    #Простой контролер персонажа, в зависимости от нажатой кнопки двигается
     def snake_control(self):
         for event in pygame.event.get():
             if event.type == QUIT:

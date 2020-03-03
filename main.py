@@ -3,7 +3,7 @@ from player_control import Control
 from Snake import snake_move
 from Level import level_
 from FOOD import Food
-
+# Загрузка всех нужных компонентов
 pygame.init()
 screen = pygame.display.set_mode((441, 441))
 screen1 = pygame.display.set_mode((441, 441))
@@ -11,7 +11,7 @@ control = Control()
 snake = snake_move()
 level = level_()
 level.create_LVL()
-
+clock = pygame.time.Clock()
 food = Food()
 level.init_field2()
 level.init_field()
@@ -22,9 +22,9 @@ score = 0
 f1_small = pygame.font.Font(None, 18)
 f2_medium = pygame.font.Font(None, 36)
 f3_big = pygame.font.Font(None, 65)
-
+# Главный игровой цикл
 while control.game_Play == True:
-
+# Загрузка стартового текста
     score_counter = f2_medium.render('Score:%s' % (level.score), 3, (255, 255, 0))
     game_name = f3_big.render('Змейка', 1, (255, 255, 0))
 
@@ -43,8 +43,7 @@ while control.game_Play == True:
 
     win_txt = f3_big.render('Вы победили!', 1, (255, 255, 0))
     win_help = f1_small.render('Нажмите "Esc" что бы выйти', 1, (255, 255, 0))
-
-    pygame.display.update()
+# Отрисовка обьектов
     control.snake_control()
     screen.fill(pygame.Color("Black"))
     level.draw_ground(screen)
@@ -53,6 +52,7 @@ while control.game_Play == True:
 
     screen.blit(score_counter, (300, 10))
 
+# переход уровней
     if level.score < 10 and level.level1 is True:
         level.draw_LVL1(screen)
         food.create_food(screen)
@@ -72,8 +72,7 @@ while control.game_Play == True:
         pygame.draw.rect(screen, pygame.Color('Grey'), pygame.Rect(0, 0, 441, 441))
         screen.blit(win_txt, (100, 30))
         screen.blit(win_help, (140, 170))
-        pygame.display.update()
-
+# Отрисовка начального экрана
     if control.pause is True and control.game_start_counter is True:
         pygame.draw.rect(screen, pygame.Color('Grey'), pygame.Rect(0, 0, 441, 441))
         screen.blit(game_name, (130, 30))
@@ -84,7 +83,6 @@ while control.game_Play == True:
         screen.blit(help_txt4, (80, 190))
         screen.blit(help_txt5, (80, 210))
         screen.blit(start_text, (30, 300))
-        pygame.display.update()
     if speed % 1000 == 0 and control.pause is False:
         snake.move(control)
         snake.cheack_wall(level)
@@ -92,4 +90,5 @@ while control.game_Play == True:
         snake.end_of_level()
         snake.animation()
     speed += 50
-    pygame.display.flip()
+
+    pygame.display.update()
